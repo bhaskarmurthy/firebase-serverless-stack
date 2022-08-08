@@ -15,28 +15,14 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: 16
+          cache: "pnpm"
 
-      - name: Install pnpm
+      - name: Setup pnpm
         id: pnpm-install
         uses: pnpm/action-setup@v2.2.2
-        with:
-          run_install: false
-
-      - name: Get pnpm store directory
-        run: |
-          echo "::set-output name=pnpm_cache_dir::$(pnpm store path)"
-
-      - name: Setup pnpm cache
-        id: pnpm-cache
-        uses: actions/cache@v3
-        with:
-          path: ${{ steps.pnpm-cache.outputs.pnpm_cache_dir }}
-          key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
-          restore-keys: |
-            ${{ runner.os }}-pnpm-store-
 
       - name: Install dependencies
-        run: pnpm install 
+        run: pnpm install --frozen-lockfile
         
       - name: Build app
         run: cd apps/cra-react-ts && pnpm build
