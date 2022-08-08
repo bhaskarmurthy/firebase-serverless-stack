@@ -10,7 +10,7 @@
     ]
   },
   "hosting": {
-    "public": "public",
+    "public": "apps/cra-react-ts/build",
     "ignore": [
       "firebase.json",
       "**/.*",
@@ -37,7 +37,7 @@
       "port": 8080
     },
     "hosting": {
-      "port": 5000
+      "port": 4000
     },
     "pubsub": {
       "port": 8085
