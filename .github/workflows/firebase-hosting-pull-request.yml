@@ -16,7 +16,8 @@ jobs:
         with:
           node-version: 16
 
-      - name: Setup pnpm
+      - name: Install pnpm
+        id: pnpm-install
         uses: pnpm/action-setup@v2.2.2
         with:
           run_install: false
@@ -26,6 +27,7 @@ jobs:
           echo "::set-output name=pnpm_cache_dir::$(pnpm store path)"
 
       - name: Setup pnpm cache
+        id: pnpm-cache
         uses: actions/cache@v3
         with:
           path: ${{ steps.pnpm-cache.outputs.pnpm_cache_dir }}
