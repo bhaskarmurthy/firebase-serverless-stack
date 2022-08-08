@@ -9,6 +9,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v2.2.2
       - run: pnpm ci && pnpm build
       - uses: FirebaseExtended/action-hosting-deploy@v0
         with:
